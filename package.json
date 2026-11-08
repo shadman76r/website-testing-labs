@@ -1,0 +1,42 @@
+{
+  "name": "website-testing-labs",
+  "version": "1.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test:unit": "tsx --test tests/security.test.ts tests/auth.test.ts tests/thresholds.test.ts"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "153.0.0",
+    "axe-core": "4.10.3",
+    "ipaddr.js": "2.5.0",
+    "lucide-react": "0.468.0",
+    "next": "15.5.29",
+    "pixelmatch": "6.0.0",
+    "playwright": "1.65.0",
+    "pngjs": "7.0.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "3.24.2",
+    "jpeg-js": "0.4.4",
+    "lighthouse": "12.8.2",
+    "chrome-launcher": "1.2.2",
+    "jspdf": "4.2.1",
+    "pg": "8.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@types/pngjs": "^6.0.5",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "@types/pg": "^8.15.5"
+  }
+}

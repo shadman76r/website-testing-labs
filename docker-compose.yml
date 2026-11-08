@@ -1,0 +1,29 @@
+services:
+  website-testing-labs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: website-testing-labs
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+      HOSTNAME: 0.0.0.0
+      PORT: "3000"
+      ENABLE_LIGHTHOUSE: ${ENABLE_LIGHTHOUSE:-false}
+      LIGHTHOUSE_ALLOW_UNFILTERED_NETWORK: ${LIGHTHOUSE_ALLOW_UNFILTERED_NETWORK:-false}
+      MAX_DISCOVERED_PAGES: ${MAX_DISCOVERED_PAGES:-10000}
+      SITE_DISCOVERY_TIMEOUT_MS: ${SITE_DISCOVERY_TIMEOUT_MS:-600000}
+    restart: unless-stopped
+    init: true
+    shm_size: "1gb"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 45s
